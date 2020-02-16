@@ -132,6 +132,7 @@ void parseACK(void)
     }
     else 
     {
+
       requestCommandInfo.done = true;
       requestCommandInfo.inResponse = false;
       ackPopupInfo(errormagic);
@@ -262,6 +263,9 @@ void parseACK(void)
 #endif    
     else if(ack_seen(errormagic))
     {
+
+
+
       ackPopupInfo(errormagic);
     }
     else if(ack_seen(echomagic))
@@ -270,7 +274,9 @@ void parseACK(void)
       {
         if(strstr(dmaL2Cache, ignoreEcho[i])) goto parse_end;
       }
-      ackPopupInfo(echomagic);
+
+      //This is the main popup message I keep seeing that requires an ackno. It popups when echo is seen in a response
+      //ackPopupInfo(echomagic);
     }
   }
   if (ack_seen(" F0:"))

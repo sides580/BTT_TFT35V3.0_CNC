@@ -76,13 +76,18 @@ char *request_M20(void)
   strcpy(requestCommandInfo.stopMagic,"End file list");
   strcpy(requestCommandInfo.errorMagic,"Error");
   resetRequestCommandInfo();
+
   mustStoreCmd(requestCommandInfo.command);
   // Wait for response
   WaitingGcodeResponse = 1;
-  int counter = 0;
-  while (!requestCommandInfo.done && counter < 10000)
+
+//The problem is caused from inside the loop process
+  while (!requestCommandInfo.done)
   {
-    loopProcess();
+      sendQueueCmd();                     //Parse and send Gcode commands in the queue
+  
+      parseACK();                         //Parse the received slave response information
+    //loopProcess();
   }
   WaitingGcodeResponse = 0;
   //clearRequestCommandInfo(); //shall be call after copying the buffer ...

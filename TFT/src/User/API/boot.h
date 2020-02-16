@@ -51,6 +51,7 @@ enum
   ICON_01_MM,
   ICON_1_MM,
   ICON_10_MM,
+  ICON_XXX_MM,
   ICON_X_DEC,
   ICON_Y_DEC,
   ICON_Z_DEC,  

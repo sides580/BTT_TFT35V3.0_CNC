@@ -64,9 +64,9 @@
 #define SPEED_ID         {"Sp.", "Fr."}
 
 // Default move speed mm/min
-#define DEFAULT_SPEED_MOVE      1200
-#define SPEED_MOVE_SLOW         30
-#define SPEED_MOVE_FAST         2000
+#define DEFAULT_SPEED_MOVE      2000
+#define SPEED_MOVE_SLOW         200
+#define SPEED_MOVE_FAST         4000
 // Extrude speed mm/min
 #define EXTRUDE_SLOW_SPEED      60
 #define EXTRUDE_NORMAL_SPEED    600

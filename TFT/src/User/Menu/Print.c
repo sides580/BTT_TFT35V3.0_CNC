@@ -258,34 +258,44 @@ const int16_t labelVolumeError[] = {LABEL_READ_TFTSD_ERROR, LABEL_READ_U_DISK_ER
 
 void menuPrintFromSource(void)
 {
+  /*
+  char tempstr[100];//added for deubbing
+  __itoa(infoMenu.cur, tempstr, 10);
+  strcat( tempstr, " Screen step 1"); 
+  GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, tempstr);
+  Delay_ms(50000);
+  */
   KEY_VALUES key_num = KEY_IDLE;
 
   u8 update=0;
 
-  //////////Shawn Test
-  //GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, "Hello");
-  //  Delay_ms(1000);
-
-
   GUI_Clear(BACKGROUND_COLOR);
   GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, textSelect(LABEL_LOADING));
 
-  if (mountFS() == true && scanPrintFiles() == true)
-  {
-    #ifdef MENU_LIST_MODE
-      menuDrawListPage(&printItems);
-    #else
-      menuDrawPage(&printItems);
-    #endif
-    gocdeListDraw();	
+  bool mountFSSuccess = mountFS();
+
+  bool ScanPrintFilesSuccess = scanPrintFiles(); //this fucker is chainging my screen!!!
+
+  if (mountFSSuccess == true && ScanPrintFilesSuccess == true)
+    {
+      #ifdef MENU_LIST_MODE
+        menuDrawListPage(&printItems);
+      #else
+        menuDrawPage(&printItems);
+      #endif
+
+      gocdeListDraw();	  
   }
   else
   {
+    GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, "Huge Fucking Problem");
+    Delay_ms(50000);
+
     GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, textSelect(labelVolumeError[infoFile.source]));
     Delay_ms(1000);
     infoMenu.cur--;
   }
-
+ 
   while(infoMenu.menu[infoMenu.cur] == menuPrintFromSource)
   {
     GUI_SetBkColor(TITLE_BACKGROUND_COLOR);

@@ -497,6 +497,8 @@ void endPrinting(void)
 
 void completePrinting(void)
 {
+
+
   endPrinting();  
   if(infoSettings.auto_off) // Auto shut down after printing
   {

@@ -87,14 +87,15 @@ LABEL_MOVE,
 };
 
 
-#define ITEM_MOVE_LEN_NUM 3
+#define ITEM_MOVE_LEN_NUM 4
 const ITEM itemMoveLen[ITEM_MOVE_LEN_NUM] = {
 // icon                       label
   {ICON_01_MM,                LABEL_01_MM},
   {ICON_1_MM,                 LABEL_1_MM},
   {ICON_10_MM,                LABEL_10_MM},
+  {ICON_XXX_MM,                "100 mm"},
 };
-const  float item_move_len[ITEM_MOVE_LEN_NUM] = {0.1f, 1, 10};
+const  float item_move_len[ITEM_MOVE_LEN_NUM] = {0.1f, 1, 10, 100};
 static u8    item_move_len_i = 1;
 
 static u32 nowTime = 0;

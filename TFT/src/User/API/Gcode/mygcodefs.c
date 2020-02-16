@@ -37,12 +37,11 @@ bool scanPrintFilesGcodeFs(void)
 {
   clearInfoFile();
 
-  char *ret = request_M20();
+  char *ret = request_M20();  //This might be the little mother fucker!!
   char *data = malloc(strlen(ret) + 1);
   strcpy(data,ret);
   clearRequestCommandInfo();
   char s[3];
-  
   if(strstr(data, "\r\n")) //for smoothieware
     strcpy(s, "\r\n");
   else //for Marlin
