@@ -351,6 +351,7 @@ KEY_VALUES menuKeyGetValue(void)
 
 void loopBackEnd(void)
 {
+ 
   getGcodeFromFile();                 //Get Gcode command from the file to be printed
            
   sendQueueCmd();                     //Parse and send Gcode commands in the queue
@@ -359,24 +360,27 @@ void loopBackEnd(void)
   
   parseRcvGcode();                    //Parse the received Gcode from other UART, such as: ESP3D, etc...
 
-  loopCheckHeater();			            //Temperature related settings
+  if(!CNC_Mode)//Must have. this updates other shit.
+    loopCheckHeater();			            //Temperature related settings
   
 
-#if defined ONBOARD_SD_SUPPORT && !defined M27_AUTOREPORT
-  loopCheckPrinting();                //Check if there is a SD or USB print running.
-#endif
-  
-#ifdef U_DISK_SUPPROT
-  USBH_Process(&USB_OTG_Core, &USB_Host);
-#endif
+  #if defined ONBOARD_SD_SUPPORT && !defined M27_AUTOREPORT
+    loopCheckPrinting();                //Check if there is a SD or USB print running.
+  #endif
+    
+    //Next fucking test
+  #ifdef U_DISK_SUPPROT
+    USBH_Process(&USB_OTG_Core, &USB_Host);
+  #endif
 
-#if LCD_ENCODER_SUPPORT
-  loopCheckMode();
-#endif
+  #if LCD_ENCODER_SUPPORT
+    loopCheckMode();//Switch to old marlin mode
+  #endif
 
-#ifdef FIL_RUNOUT_PIN
-  loopFILRunoutDetect();
-#endif
+  #ifdef FIL_RUNOUT_PIN
+  if(!CNC_Mode)
+    loopFILRunoutDetect();
+  #endif
 }
 
 void loopFrontEnd(void)
@@ -392,7 +396,9 @@ void loopFrontEnd(void)
 
 void loopProcess(void)
 {
-  temp_Change();
+  if ( !CNC_Mode)
+    temp_Change();
+  
   loopBackEnd();
   loopFrontEnd();
 }

@@ -263,8 +263,8 @@ void menuPrintFromSource(void)
   u8 update=0;
 
   //////////Shawn Test
-  GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, "Hello");
-    Delay_ms(1000);
+  //GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, "Hello");
+  //  Delay_ms(1000);
 
 
   GUI_Clear(BACKGROUND_COLOR);
@@ -347,6 +347,7 @@ void menuPrintFromSource(void)
           }
           else if(key_num+start < infoFile.F_num+infoFile.f_num)	//gcode
           {	
+
             if(infoHost.connected !=true) break;
             if(EnterDir(infoFile.file[key_num + start - infoFile.F_num]) == false) break;	
             
@@ -408,6 +409,32 @@ LABEL_PRINT,
 //This is the entry point!!!!!!!!!!!!!
 void menuPrint(void)
 {
+ /* mustStoreCmd("G92 X0 y0 z0\n");
+    bool testvalue =  storeCmd("G92 X0 y0 z0\n");
+         loopBackEnd();
+      
+
+
+      loopBackEnd();
+      loopBackEnd();
+      loopBackEnd();
+      loopBackEnd();
+      loopBackEnd();
+       if (testvalue){
+     GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, "Hello");
+            }
+            else
+            {
+      GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, "Hello Falwse");
+                                             }
+                                             
+    Delay_ms(5000);
+                
+              //storeCmd("G92 y0\n");
+              //storeCmd("G92 z0\n");
+              
+*/
+
   KEY_VALUES  key_num = KEY_IDLE;
   
   menuDrawPage(&sourceSelItems);

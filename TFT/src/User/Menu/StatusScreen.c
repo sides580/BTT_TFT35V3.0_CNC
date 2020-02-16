@@ -287,18 +287,18 @@ void toggleTool(void)
     nowTime = OS_GetTime();
     drawTemperature();
     
-    if (infoHost.connected == true)
-    {
-      if (gantryCmdWait != true)
-      {
-        gantryCmdWait = true;
-        storeCmd("M114\n");
-      }
-    }
-    else
-    {
-      gantryCmdWait = false;
-    }
+    //if (infoHost.connected == true)
+    //{
+    //if (gantryCmdWait != true)
+    //{
+    //  gantryCmdWait = true;
+      storeCmd("M114\n");
+      //update_waiting=true;
+    //}
+    //if (infoHost.connected == false && gantryCmdWait == false)  
+    //{
+    //  gantryCmdWait = false;
+    //}
   }
 }
 
@@ -345,6 +345,7 @@ void menuStatus(void)
         infoMenu.menu[++infoMenu.cur] = menuMain;
         break;
       case KEY_ICON_7:
+
         infoMenu.menu[++infoMenu.cur] = menuPrint;
         break;
 

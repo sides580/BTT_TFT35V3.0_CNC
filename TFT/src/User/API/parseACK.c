@@ -95,15 +95,16 @@ void parseACK(void)
   
   syncL2CacheFromL1(SERIAL_PORT);
   infoHost.rx_ok[SERIAL_PORT] = false;
-  
+  infoHost.connected = true;
+  /*
   if(infoHost.connected == false) //not connected to Marlin
   {
-    if((!ack_seen("T:") && !ack_seen("T0:")) || !ack_seen("ok"))  goto parse_end;  //the first response should be such as "T:25/50 ok\n"
+    //if((!ack_seen("T:") && !ack_seen("T0:") && !ack_seen("X:")) )  goto parse_end; //|| !ack_seen("ok")  //the first response should be such as "T:25/50 ok\n"
     infoHost.connected = true;
     #ifdef AUTO_SAVE_LOAD_LEVELING_VALUE
       storeCmd("M420 S1\n");
     #endif
-  }    
+  }    */
 
   // GCode command response
   if(requestCommandInfo.inWaitResponse && ack_seen(requestCommandInfo.startMagic))

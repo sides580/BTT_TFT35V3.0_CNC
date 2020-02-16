@@ -64,20 +64,20 @@
 #define SPEED_ID         {"Sp.", "Fr."}
 
 // Default move speed mm/min
-#define DEFAULT_SPEED_MOVE      3000
-#define SPEED_MOVE_SLOW         1000
-#define SPEED_MOVE_FAST         5000
+#define DEFAULT_SPEED_MOVE      1200
+#define SPEED_MOVE_SLOW         30
+#define SPEED_MOVE_FAST         2000
 // Extrude speed mm/min
 #define EXTRUDE_SLOW_SPEED      60
 #define EXTRUDE_NORMAL_SPEED    600
 #define EXTRUDE_FAST_SPEED      1200
 
 // Size of machine
-#define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define X_MIN_POS -4
+#define Y_MIN_POS -4
 #define Z_MIN_POS -150
-#define X_MAX_POS 950
-#define Y_MAX_POS 950
+#define X_MAX_POS 946
+#define Y_MAX_POS 946
 #define Z_MAX_POS 150
 
 // Specify a pause position as { X, Y, Z_raise }
@@ -86,8 +86,8 @@
 #define NOZZLE_PAUSE_X_POSITION     (X_MIN_POS + 10)  // (mm) Must be an integer
 #define NOZZLE_PAUSE_Y_POSITION     (Y_MIN_POS + 10)  // (mm) Must be an integer
 #define NOZZLE_PAUSE_Z_RAISE        20   // (mm)
-#define NOZZLE_PAUSE_E_FEEDRATE     6000 // (mm/min) retract & purge feedrate
-#define NOZZLE_PAUSE_XY_FEEDRATE    6000 // (mm/min) X and Y axes feedrate
+#define NOZZLE_PAUSE_E_FEEDRATE     3000 // (mm/min) retract & purge feedrate
+#define NOZZLE_PAUSE_XY_FEEDRATE    3000 // (mm/min) X and Y axes feedrate
 #define NOZZLE_PAUSE_Z_FEEDRATE     600  // (mm/min) Z axis feedrate
 
 // Send G29 for auto bed leveling
@@ -113,7 +113,7 @@
 #define LEVELING_POINT_Z_FEEDRATE  600   // (mm/min) Z axis move feedrate
 
 // Power Supply
-#define PS_ON_ACTIVE_HIGH    true   // Set 'false' for ATX (1), 'true' for X-Box (2)
+#define PS_ON_ACTIVE_HIGH    false   // Set 'false' for ATX (1), 'true' for X-Box (2)
 
 // Filament runout detection
 #define FIL_RUNOUT_INVERTING true  // Set to false to invert the logic of the sensor.
@@ -144,7 +144,7 @@
  * It is friendly to display long file name, but the model preview feature is not available
  * Disable this if you want to use the model preview feature
  */
-//#define MENU_LIST_MODE
+#define MENU_LIST_MODE
 
 
 //-------RESET SETTINGS & TOUCH SCREEN CALIBRATION------||
@@ -154,8 +154,8 @@
 // SD support
 #define ONBOARD_SD_SUPPORT
 #ifdef ONBOARD_SD_SUPPORT
-  #define M27_AUTOREPORT                      // Disable M27 polling if you enable enable AUTO_REPORT_SD_STATUS in Marlin
-  #define M27_REFRESH                3        // Time in sec for M27 command
+  //#define M27_AUTOREPORT                      // Disable M27 polling if you enable enable AUTO_REPORT_SD_STATUS in Marlin
+  #define M27_REFRESH                5        // Time in sec for M27 command
   #define M27_WATCH_OTHER_SOURCES    true     // if true the polling on M27 report is always active. Case: SD print started not from TFT35
 #endif
 
@@ -166,7 +166,7 @@
  */
 //#define HOME_BEFORE_PLR
 //#define BTT_MINI_UPS // Backup power / UPS to move the Z axis steppers on power loss
-#define POWER_LOSS_ZRAISE 10 // (mm) Z axis raise on resume (on power loss with UPS)
+#define POWER_LOSS_ZRAISE 0 // (mm) Z axis raise on resume (on power loss with UPS)
 
 
 // Prevent extrusion if the temperature is below set temperature
@@ -201,8 +201,8 @@
 #define CUSTOM_2_GCODE "M21\n"
 #define CUSTOM_3_LABEL "Release Sd Card"
 #define CUSTOM_3_GCODE "M22\n"
-//#define CUSTOM_4_LABEL "Custom4"
-//#define CUSTOM_4_GCODE "M105\n"
+#define CUSTOM_4_LABEL "Relitive Mode"
+#define CUSTOM_4_GCODE "G91\n"
 //#define CUSTOM_5_LABEL "Custom5"
 //#define CUSTOM_5_GCODE "M105\n"
 //#define CUSTOM_6_LABEL "Custom6"
@@ -231,5 +231,7 @@ custom gcode below are compatible only if MENU_LIST_MODE is active
 #endif
 
 #define CANCEL_PRINT_GCODE "G28 X0 Y0\n"
+
+
 
 #endif

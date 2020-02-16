@@ -97,7 +97,7 @@ void printSetUpdateWaiting(bool isWaiting)
 
 void startGcodeExecute(void)
 {    
-
+  
 }
 
 void endGcodeExecute(void)
@@ -115,8 +115,8 @@ void endGcodeExecute(void)
     mustStoreCmd("%s S0\n", fanCmd[i]);  
   }
   */
-  mustStoreCmd("T0\n");
-  mustStoreCmd("M18\n");
+  //mustStoreCmd("T0\n");
+  //mustStoreCmd("M18\n");
 }
 
 //only return gcode file name except path
@@ -174,21 +174,26 @@ void menuBeforePrinting(void)
       
     case TFT_UDISK:
     case TFT_SD: // GCode from file on TFT SD
+
       if(f_open(&infoPrinting.file,infoFile.title, FA_OPEN_EXISTING | FA_READ) != FR_OK)
       {
         ExitDir();
         infoMenu.cur--;		
         return ;
       }
-      if( powerFailedCreate(infoFile.title)==false)
-      {
 
-      }
+
+      //if( powerFailedCreate(infoFile.title)==false)
+      //{
+
+      //}
+
       powerFailedlSeek(&infoPrinting.file);
 
       infoPrinting.size  = f_size(&infoPrinting.file);
       infoPrinting.cur   = infoPrinting.file.fptr;
 
+      
       startGcodeExecute();
       break;
   }
@@ -513,7 +518,7 @@ void abortPrinting(void)
       break;
   }
 
-  heatClearIsWaiting();
+  //heatClearIsWaiting();
   
   mustStoreCmd("G0 Z%d F3000\n", limitValue(0, (int)coordinateGetAxisTarget(Z_AXIS) + 10, Z_MAX_POS));
   //mustStoreCmd(CANCEL_PRINT_GCODE);

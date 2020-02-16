@@ -307,7 +307,7 @@ void menuMove(void)
       #endif    
     }
     loopProcess();
-    update_gantry();
+    update_gantry();//this calls M114 to get all X y Z positions
   }
   mustStoreCmd("G90\n");
 }

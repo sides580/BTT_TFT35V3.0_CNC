@@ -2,6 +2,7 @@
 
 HOST  infoHost;  // Information interaction with Marlin
 MENU  infoMenu;  // Menu structure
+bool CNC_Mode = true;
 
 void Hardware_GenericInit(void)
 {

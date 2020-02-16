@@ -79,7 +79,8 @@ char *request_M20(void)
   mustStoreCmd(requestCommandInfo.command);
   // Wait for response
   WaitingGcodeResponse = 1;
-  while (!requestCommandInfo.done)
+  int counter = 0;
+  while (!requestCommandInfo.done && counter < 10000)
   {
     loopProcess();
   }
@@ -105,8 +106,10 @@ char * request_M33(char *filename)
   mustStoreCmd(requestCommandInfo.command);
   // Wait for response
   WaitingGcodeResponse = 1;
-  while (!requestCommandInfo.done)
+  int counter = 0;
+  while (!requestCommandInfo.done && counter < 10000)
   {
+    counter++;
     loopProcess();
   }
   WaitingGcodeResponse = 0;

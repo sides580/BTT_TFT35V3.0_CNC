@@ -98,6 +98,7 @@ typedef struct
 }MENU;
 
 extern MENU infoMenu;
+extern bool CNC_Mode;
 
 typedef struct
 {	

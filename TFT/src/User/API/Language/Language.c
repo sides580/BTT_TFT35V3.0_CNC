@@ -1,19 +1,19 @@
 #include "Language.h"
 #include "includes.h"
 #include "language_en.h"
-//#include "language_cn.h"
-//#include "language_ru.h"
-//#include "language_jp.h"
-//#include "language_de.h"
-//#include "language_am.h"
-//#include "language_cz.h"
-//#include "language_es.h"
-//#include "language_fr.h"
-//#include "language_pt.h"
-//#include "language_it.h"
-//#include "language_pl.h"
-//#include "language_sk.h"
-//#include "language_du.h"
+#include "language_cn.h"
+#include "language_ru.h"
+#include "language_jp.h"
+#include "language_de.h"
+#include "language_am.h"
+#include "language_cz.h"
+#include "language_es.h"
+#include "language_fr.h"
+#include "language_pt.h"
+#include "language_it.h"
+#include "language_pl.h"
+#include "language_sk.h"
+#include "language_du.h"
 
 const char *const en_pack[LABEL_NUM]={
   EN_LANGUAGE,
@@ -171,7 +171,7 @@ const char *const en_pack[LABEL_NUM]={
   EN_Y_ZERO,
   EN_Z_ZERO,
 };
-/*
+
 const char *const cn_pack[LABEL_NUM]={
   CN_LANGUAGE,
   CN_HEAT,
@@ -2176,25 +2176,25 @@ const char *const du_pack[LABEL_NUM]={
   DU_KNOB_LED,
   DU_M0_PAUSE,
 };
-*/
+
 u8 * textSelect(u8 sel)
 {
   switch(infoSettings.language)
   {
     case ENGLISH:     return (u8 *)en_pack[sel];
-    //case CHINESE:     return (u8 *)cn_pack[sel];
-    //case RUSSIAN:     return (u8 *)ru_pack[sel];
-    //case JAPANESE:    return (u8 *)jp_pack[sel];
-    //case ARMENIAN:    return (u8 *)am_pack[sel];
-    //case GERMAN:      return (u8 *)de_pack[sel];
-    //case CZECH:       return (u8 *)cz_pack[sel];
-    //case SPAIN:       return (u8 *)es_pack[sel];
-    //case FRENCH:      return (u8 *)fr_pack[sel];
-    //case PORTUGUESE:  return (u8 *)pt_pack[sel];
-    //case ITALIAN:     return (u8 *)it_pack[sel];
-    //case POLISH:      return (u8 *)pl_pack[sel];
-    //case SLOVAK:      return (u8 *)sk_pack[sel];
-    //case DUTCH:       return (u8 *)du_pack[sel];
+    case CHINESE:     return (u8 *)cn_pack[sel];
+    case RUSSIAN:     return (u8 *)ru_pack[sel];
+    case JAPANESE:    return (u8 *)jp_pack[sel];
+    case ARMENIAN:    return (u8 *)am_pack[sel];
+    case GERMAN:      return (u8 *)de_pack[sel];
+    case CZECH:       return (u8 *)cz_pack[sel];
+    case SPAIN:       return (u8 *)es_pack[sel];
+    case FRENCH:      return (u8 *)fr_pack[sel];
+    case PORTUGUESE:  return (u8 *)pt_pack[sel];
+    case ITALIAN:     return (u8 *)it_pack[sel];
+    case POLISH:      return (u8 *)pl_pack[sel];
+    case SLOVAK:      return (u8 *)sk_pack[sel];
+    case DUTCH:       return (u8 *)du_pack[sel];
 
     default:        return NULL;
   }

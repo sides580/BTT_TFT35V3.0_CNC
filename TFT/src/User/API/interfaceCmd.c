@@ -177,15 +177,15 @@ void sendQueueCmd(void)
         break;
         
         case 80: //M80
-          #ifdef PS_ON_PIN
-            PS_ON_On();
-          #endif
+          //#ifdef PS_ON_PIN
+           // PS_ON_On();
+          //#endif
           break;
         
         case 81: //M81
-          #ifdef PS_ON_PIN
-            PS_ON_Off();
-          #endif
+          //#ifdef PS_ON_PIN
+          //  PS_ON_Off();
+          //#endif
           break;
         
         case 82: //M82

@@ -277,41 +277,45 @@ void loopCheckHeater(void)
     if(update_waiting == true)                {nowTime=OS_GetTime();break;}
     if(OS_GetTime()<nowTime+update_time)       break;
     if(RequestCommandInfoIsRunning())          break; //to avoid colision in Gcode response processing
+
     if(storeCmd("M105\n")==false)              break;
 
     nowTime=OS_GetTime();
     update_waiting=true;
   }while(0);
 
+  if(!CNC_Mode)
+  {
   /* Query the heater that needs to wait for the temperature to rise, whether it reaches the set temperature */
-  for(i=0; i<HEATER_NUM; i++)
-  {
-    if (heater.T[i].waiting == false)                                   continue;
-    if (i==BED)
+    for(i=0; i<HEATER_NUM; i++)
     {
-      if (heater.T[BED].current+2 <= heater.T[BED].target)              continue;
-    }
-    else
-    {
-      if (inRange(heater.T[i].current, heater.T[i].target, 2) != true)  continue;
-    }
-
-    heater.T[i].waiting = false;
-    if(heatHasWaiting() == true)                                        continue;
-
-    if(infoMenu.menu[infoMenu.cur] == menuHeat)                         break;
-    update_time=300;
-  }
-    
-  for(TOOL i = BED; i < HEATER_NUM; i++) // If the target temperature changes, send a Gcode to set the motherboard
-  {
-    if(lastHeater.T[i].target != heater.T[i].target)
-    {
-      lastHeater.T[i].target = heater.T[i].target;
-      if(send_waiting[i] != true)
+      if (heater.T[i].waiting == false)                                   continue;
+      if (i==BED)
       {
-        send_waiting[i] = true;
-        storeCmd("%s ",heatCmd[i]);
+        if (heater.T[BED].current+2 <= heater.T[BED].target)              continue;
+      }
+      else
+      {
+        if (inRange(heater.T[i].current, heater.T[i].target, 2) != true)  continue;
+      }
+
+      heater.T[i].waiting = false;
+      if(heatHasWaiting() == true)                                        continue;
+
+      if(infoMenu.menu[infoMenu.cur] == menuHeat)                         break;
+      update_time=300;
+    }
+    
+    for(TOOL i = BED; i < HEATER_NUM; i++) // If the target temperature changes, send a Gcode to set the motherboard
+    {
+      if(lastHeater.T[i].target != heater.T[i].target)
+      {
+        lastHeater.T[i].target = heater.T[i].target;
+        if(send_waiting[i] != true)
+        {
+          send_waiting[i] = true;
+          storeCmd("%s ",heatCmd[i]);
+        }
       }
     }
   }
