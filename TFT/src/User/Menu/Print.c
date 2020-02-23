@@ -288,9 +288,6 @@ void menuPrintFromSource(void)
   }
   else
   {
-    GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, "Huge Fucking Problem");
-    Delay_ms(50000);
-
     GUI_DispStringInRect(0, 0, LCD_WIDTH, LCD_HEIGHT, textSelect(labelVolumeError[infoFile.source]));
     Delay_ms(1000);
     infoMenu.cur--;

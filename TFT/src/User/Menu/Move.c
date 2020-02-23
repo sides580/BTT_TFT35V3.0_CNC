@@ -93,7 +93,7 @@ const ITEM itemMoveLen[ITEM_MOVE_LEN_NUM] = {
   {ICON_01_MM,                LABEL_01_MM},
   {ICON_1_MM,                 LABEL_1_MM},
   {ICON_10_MM,                LABEL_10_MM},
-  {ICON_XXX_MM,                "100 mm"},
+  {ICON_XXX_MM,                LABEL_10_MM},
 };
 const  float item_move_len[ITEM_MOVE_LEN_NUM] = {0.1f, 1, 10, 100};
 static u8    item_move_len_i = 1;

@@ -330,7 +330,10 @@ void menuStatus(void)
     switch (key_num)
     {
       case KEY_ICON_0:
-        infoMenu.menu[++infoMenu.cur] = menuUnifiedHeat;
+        if(CNC_Mode)
+          infoMenu.menu[++infoMenu.cur] = menuSelectCut;
+        else
+          infoMenu.menu[++infoMenu.cur] = menuUnifiedHeat;
         break;
       case KEY_ICON_1:
         infoMenu.menu[++infoMenu.cur] = menuUnifiedHeat;
